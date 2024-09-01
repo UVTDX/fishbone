@@ -2,6 +2,9 @@
 #include <termios.h>
 #include <unistd.h>
 
+struct termios orig_termios;
+
+
 
 int main() {
 	enableRawMode();
