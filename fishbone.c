@@ -3,14 +3,14 @@
 #include <termios.h>
 #include <unistd.h>
 
-
+/* disable canonical mode/ echoing */
 void enableRawMode(struct termios *orig_termios) {
-    tcgetattr(STDIN_FILENO, orig_termios);
+    tcgetattr(STDIN_FILENO, orig_termios); /* takes current terminal attr & makes copy to modify */
     struct termios raw = *orig_termios;
 
     raw.c_lflag &= ~(ECHO | ICANON);
 
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw); /* set new attr */
 }
 
 
